@@ -3,7 +3,19 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import * as firebase from 'firebase';
 
+var config = {
+
+    apiKey: "AIzaSyCdYbV8B53nLaTnzOzZo87AsyyxkNXXgPc",
+    authDomain: "gamerguru-ebfb1.firebaseapp.com",
+    databaseURL: "https://gamerguru-ebfb1.firebaseio.com",
+    projectId: "gamerguru-ebfb1",
+    storageBucket: "gamerguru-ebfb1.appspot.com",
+    messagingSenderId: "41414030757"
+    
+
+  }
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -47,6 +59,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      firebase.initializeApp(config);
     });
   }
 }
