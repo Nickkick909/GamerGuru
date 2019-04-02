@@ -12,14 +12,27 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Home',
-      url: '/home',
-      icon: 'home'
+      url: '/game-home',
+      icon: 'Home'
+    },
+    
+    {
+      title: 'Items',
+      url: '/items',
+      icon: 'construct'
+    },
+    
+    {
+      title: 'Forum',
+      url: '/forum',
+      icon: 'chatboxes'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Pick a Game',
+      url: '/home',
+      icon: 'logo-game-controller-b'
     }
+
   ];
 
   constructor(
