@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color= "dark">
     <ion-title>Login</ion-title>
 
         <ion-buttons slot="end">
@@ -11,28 +11,28 @@ Signup      </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding color= "dark">
 
 <ion-img [src]="imgfile"></ion-img>
 
 
 <form [formGroup]="new_item_form" (submit)="login(new_item_form.value)">
-    <ion-item>
-      <ion-label color="primary" position="floating">email</ion-label>
+    <ion-item color= "dark">
+      <ion-label color="tertiary" position="floating">email</ion-label>
       <ion-input type="text" formControlName="email" required></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" position="floating">password</ion-label>
+    <ion-item color="dark">
+      <ion-label color="tertiary" position="floating">password</ion-label>
       <ion-input type="text" formControlName="password" required></ion-input>
     </ion-item>
 
-    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!new_item_form.valid">Login</ion-button>
+    <ion-button color="tertiary" expand="block" type="submit" [disabled]="!new_item_form.valid">Login</ion-button>
   </form>
 
-  <ion-item>
+  <ion-item color= "dark">
   	<ion-grid>
-  		<ion-button class="submit-btn" (click)="loginFacebook()">Facebook Login</ion-button>
-  		<ion-button class="submit-btn" (click)="loginGoogle()">Google Login</ion-button>
+  		<ion-button color="tertiary" (click)="loginFacebook()">Facebook Login</ion-button>
+  		<ion-button color="tertiary" (click)="loginGoogle()">Google Login</ion-button>
   	</ion-grid>
   </ion-item>
 

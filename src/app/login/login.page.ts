@@ -17,7 +17,7 @@ import * as firebase from 'firebase';
 export class LoginPage implements OnInit {
 
 new_item_form: FormGroup;
-  imgfile="assets/icecream.jpg";
+  imgfile="assets/GamerGuru Logo.png";
   constructor(
     private router: Router,
     public formBuilder: FormBuilder,
