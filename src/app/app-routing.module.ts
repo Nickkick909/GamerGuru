@@ -20,7 +20,9 @@ const routes: Routes = [
   { path: 'game-home', loadChildren: './game-home/game-home.module#GameHomePageModule' },
   { path: 'items', loadChildren: './items/items.module#ItemsPageModule' },
   { path: 'forum', loadChildren: './forum/forum.module#ForumPageModule' },
-  { path: 'new-game', loadChildren: './new-game/new-game.module#NewGamePageModule' }
+  { path: 'new-game', loadChildren: './new-game/new-game.module#NewGamePageModule' },
+  { path: 'characters', loadChildren: './characters/characters.module#CharactersPageModule' },
+  { path: 'add-character', loadChildren: './add-character/add-character.module#AddCharacterPageModule' }
 ];
 
 @NgModule({
