@@ -33,6 +33,11 @@ export class AppComponent {
       url: '/items',
       icon: 'construct'
     },
+    {
+      title: 'Characters',
+      url: '/characters',
+      icon: 'man'
+    },
     
     {
       title: 'Forum',
