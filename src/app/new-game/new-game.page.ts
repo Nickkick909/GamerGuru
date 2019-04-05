@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { File } from "@ionic-native/file/ngx";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 import * as firebase from "firebase";
 @Component({
@@ -10,13 +11,37 @@ import * as firebase from "firebase";
 export class NewGamePage implements OnInit {
   result;
   imgfile="";
-  constructor(private file: File) { }
-
+  constructor(private file: File, private camera: Camera) { }
+  //constructor parameters break add page
   ngOnInit() {
   }
 
+  async pickImage() {
+    const options: CameraOptions = {
+      quality: 40,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY, //i added this, should let them select from photo library
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
 
+    try {
+      console.log(this);
+      let cameraInfo = await this.camera.getPicture(options);
+      let blobInfo = await this.makeFileIntoBlob(cameraInfo);
+      let uploadInfo: any = await this.uploadToFirebase(blobInfo);
+      console.log(uploadInfo);
+      // let url:any = uploadInfo.ref.getDownloadURL();
+      alert("File Upload Success " + uploadInfo);
+      this.imgfile = uploadInfo;
+      
+    } catch (e) {
+      console.log(e.message);
+      alert("File Upload Error " + e.message);
+    }
+  }
 
+  
 // FILE STUFF
 makeFileIntoBlob(_imagePath) {
   // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
