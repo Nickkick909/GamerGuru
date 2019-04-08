@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { File } from "@ionic-native/file/ngx";
+import { Camera } from "@ionic-native/camera/ngx";
+import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +24,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providers: [
     StatusBar,
     SplashScreen,
+    PhotoLibrary,
+    Camera,
+    File,
     AngularFirestore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
