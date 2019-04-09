@@ -8,12 +8,12 @@ import { ItemService } from '../item.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  items=[];
+  games=[];
   constructor(private router:Router,
     public itemService:ItemService) { }
 
   ngOnInit() {
-    this.items= this.itemService.getGames();
+    this.games= this.itemService.getGames();
   }
   addGame() {
     console.log("Add game");

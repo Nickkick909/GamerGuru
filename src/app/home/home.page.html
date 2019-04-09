@@ -14,7 +14,7 @@
 
 <ion-content color = "dark">
   <ion-list>
-    <ion-item color = "dark" *ngFor="let item of items" (click)="goToItem(item)">
+    <ion-item color = "dark" *ngFor="let item of games" (click)="goToItem(item)">
       <ion-thumbnail slot="start">
         <ion-img [src]="item.img"></ion-img>
       </ion-thumbnail>
