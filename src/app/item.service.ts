@@ -19,8 +19,21 @@ export class ItemService {
       console.log(this.games);
       this.events.publish('dataloaded', Date.now())
     });*/
+    this.ref.on('value',resp =>{
+      this.games=[];
+      this.games=snapshotToArray(resp);
+      this.events.publish('dataloaded',Date.now())
+    });
   }
 
+  createGame(title,img){
+    let newInfo=firebase.database().ref('games/').push();
+    newInfo.set({
+      'title': title,
+      'img': img
+    });
+    console.log(this.games);
+  }
   getGames(){
     return this.games;
   }

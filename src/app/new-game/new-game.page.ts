@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { File } from "@ionic-native/file/ngx";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
-import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+// import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+// import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ItemService } from '../item.service';
 
 import * as firebase from "firebase";
 @Component({
@@ -12,7 +16,10 @@ import * as firebase from "firebase";
 export class NewGamePage implements OnInit {
   result;
   imgfile="";
-  constructor(private file: File, private camera: Camera) { }
+  constructor(private file: File, private camera: Camera,
+    private router: Router,
+ 	  //public formBuilder: FormBuilder,
+ 	     public itemService: ItemService) { }
   //constructor parameters break add page  private photoLibrary: PhotoLibrary
   ngOnInit() {}
 
@@ -42,7 +49,14 @@ export class NewGamePage implements OnInit {
   .catch(err => console.log('permissions weren\'t granted'));
 }*/
 
-  
+  createGame(value){
+    //this.itemService.createGame(value.title,value.img);
+    this.itemService.createGame("testGameTitle", "testImage");
+  	this.goBack();
+  }
+  goBack() {
+    console.log("go back");
+  }
   async pickImage() {
     const options: CameraOptions = {
       quality: 40,
