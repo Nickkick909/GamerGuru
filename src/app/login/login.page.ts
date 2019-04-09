@@ -26,7 +26,7 @@ new_item_form: FormGroup;
   }
   ngOnInit() {
   	  	this.new_item_form = this.formBuilder.group({
-      email: new FormControl('nrknight@email.sc.edu', Validators.required),
+      email: new FormControl('test@test.com', Validators.required),
       password: new FormControl('testpass', Validators.required)
     });
   }
