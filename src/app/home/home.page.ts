@@ -20,4 +20,8 @@ export class HomePage implements OnInit{
     var self=this;
     self.router.navigate(['/new-game']);
   }
+  goToItem(item){
+    var self= this;
+    self.router.navigate(['/game-home', item]);
+  }
 }

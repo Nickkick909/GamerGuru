@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-game-home',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-home.page.scss'],
 })
 export class GameHomePage implements OnInit {
-
-  constructor() { }
+  current_item:any;
+  
+    constructor(private route: ActivatedRoute,
+      private router: Router,
+      public itemService: ItemService) {
+ 
+      }
 
   ngOnInit() {
+    
+      //current item information
+      this.route.params.subscribe(
+        param => {
+          this.current_item = param;
+          console.log('Selected item detail: ' + this.current_item.name);
+        }
+      )
   }
 
 }
