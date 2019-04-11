@@ -24,7 +24,7 @@
           User Type
         </ion-list-header>
     
-      <ion-radio-group color= "dark">
+      <ion-radio-group color= "dark" [(ngModel)]="user.type" required>
           <ion-item color= "dark">
           <ion-label>Owner</ion-label>
           <ion-radio value="owner"></ion-radio>
