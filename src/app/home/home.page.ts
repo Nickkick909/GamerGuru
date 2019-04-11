@@ -9,11 +9,13 @@ import { ItemService } from '../item.service';
 })
 export class HomePage implements OnInit{
   games=[];
+  owner=false;
   constructor(private router:Router,
     public itemService:ItemService) { }
 
   ngOnInit() {
     this.games= this.itemService.getGames();
+    this.owner=this.itemService.getUser();
   }
   addGame() {
     console.log("Add game");
