@@ -4,6 +4,9 @@
       <ion-menu-button color = "tertiary"></ion-menu-button>
     </ion-buttons>
     <ion-title>Characters</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="editCharacters()" *ngIf="owner"><ion-icon slot="icon-only" name="add"></ion-icon></ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

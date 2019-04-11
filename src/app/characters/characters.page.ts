@@ -9,16 +9,22 @@ import { ItemService } from '../item.service';
 })
 export class CharactersPage implements OnInit {
 characters=[];
+owner=false;
   constructor(private router:Router,
     public itemService:ItemService) { }
 
   ngOnInit() {
     this.characters=this.itemService.getCharacters();
+    this.owner=this.itemService.getUser();
   }
 
   goToItem(item){
     var self= this;
     self.router.navigate(['/character-profile', item]);
+  }
+  editCharacters() {
+    var self = this;
+    self.router.navigate(['/edit-characters']);
   }
 
 }
