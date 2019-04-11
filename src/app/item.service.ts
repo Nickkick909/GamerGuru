@@ -91,6 +91,10 @@ export class ItemService {
     return this.characters;
   }
 
+  setGame(title) { //globally sets current game title
+    this.currGame=title;
+  }
+
 }
 //snapshotToArray method for loading lists from firebase
 export const snapshotToArray = snapshot => {
