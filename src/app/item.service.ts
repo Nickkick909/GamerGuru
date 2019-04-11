@@ -95,6 +95,15 @@ export class ItemService {
     this.currGame=title;
   }
 
+  loadCharacters(){ //loads current game character from a database that is {game name}Characters through string concatination
+    var refc = firebase.database().ref(this.currGame+'Characters/');
+    refc.on('value',resp =>{
+    this.characters=[];
+    this.characters=snapshotToArray(resp);
+    this.events.publish('dataloaded',Date.now())
+  });
+  }
+
 }
 //snapshotToArray method for loading lists from firebase
 export const snapshotToArray = snapshot => {

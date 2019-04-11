@@ -13,7 +13,7 @@ characters=[];
     public itemService:ItemService) { }
 
   ngOnInit() {
-    this.characters=ItemService.getCharacters();
+    this.characters=this.itemService.getCharacters();
   }
 
   goToItem(item){
