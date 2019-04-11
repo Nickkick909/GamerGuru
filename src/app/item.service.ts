@@ -9,7 +9,9 @@ export class ItemService {
   //don't forget to remove default values
   games:Array<any>;//=[{"title": "Smite", "img":"https://web2.hirez.com/smite-media//wp-content/uploads/2019/02/LOGO_SMITE_2016_WHITE_Shadow_500x170.png"}]; //array for the games we have to choose from
   user:Array<any>=[];
+  show:Array<any>=[];
   ref = firebase.database().ref('games/');
+  refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
   constructor(public events: Events) { 
     console.log("loading saved items");
@@ -31,6 +33,11 @@ export class ItemService {
       this.user = snapshotToArray(resp);
       this.events.publish('dataloaded', Date.now())
     });
+    this.refs.on('value',resp =>{
+      this.show=[];
+      this.show=snapshotToArray(resp);
+      this.events.publish('dataloaded',Date.now())
+    });
   }
 
   createGame(title,img){
@@ -41,8 +48,21 @@ export class ItemService {
     });
     console.log(this.games);
   }
+
+  showGame(title,img){
+    let newInfo=firebase.database().ref('games/').push();
+    newInfo.set({
+      'title': title,
+      'img': img
+    });
+    console.log(this.games);
+  }
   getGames(){
     return this.games;
+  }
+
+  getShow(){
+    return this.show;
   }
 
   getUser(){
