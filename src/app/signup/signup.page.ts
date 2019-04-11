@@ -12,7 +12,8 @@ export class SignupPage implements OnInit {
 
   user={
   email:"",
-  password:""};
+  password:"",
+  type:""};
 
   constructor(private router:Router) { }
 
@@ -23,7 +24,8 @@ export class SignupPage implements OnInit {
   signup(){
   	console.log(this.user.email+"  "+this.user.password)
   	var email=this.user.email;
-  	var password=this.user.password;
+	var password=this.user.password;
+	var type=this.user.type;
 		var self=this;
 		
 		
@@ -51,7 +53,15 @@ export class SignupPage implements OnInit {
 	  // ...
 	}).then(function(user){
 		  	console.log("finished creating account")
-		  	// self.router.navigate(["/login"]);
+			  // self.router.navigate(["/login"]);
+			  var userid=firebase.auth().currentUser.uid;
+				console.log(userid);
+				let usertype= firebase.database().ref('usertypes/').push();
+				console.log(type);
+				usertype.set({
+					'uid': userid,
+					'type':type
+				});
 		  	self.router.navigate(["/home"]);
 	});
 

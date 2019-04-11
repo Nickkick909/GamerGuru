@@ -8,8 +8,13 @@ import { Events } from '@ionic/angular';
 export class ItemService {
   //don't forget to remove default values
   games:Array<any>;//=[{"title": "Smite", "img":"https://web2.hirez.com/smite-media//wp-content/uploads/2019/02/LOGO_SMITE_2016_WHITE_Shadow_500x170.png"}]; //array for the games we have to choose from
-
+  user:Array<any>=[];
+  show:Array<any>=[];
+  characters:Array<any>=[];
+  currGame="";
   ref = firebase.database().ref('games/');
+  refs = firebase.database().ref('showgames/');
+  refu = firebase.database().ref('usertypes/');
   constructor(public events: Events) { 
     console.log("loading saved items");
     //loading the games list from firebase, commented out for now till somethings actaully saved in firebase
@@ -25,6 +30,16 @@ export class ItemService {
       this.games=snapshotToArray(resp);
       this.events.publish('dataloaded',Date.now())
     });
+    this.refu.on('value', resp => {
+      this.user = [];
+      this.user = snapshotToArray(resp);
+      this.events.publish('dataloaded', Date.now())
+    });
+    this.refs.on('value',resp =>{
+      this.show=[];
+      this.show=snapshotToArray(resp);
+      this.events.publish('dataloaded',Date.now())
+    });
   }
 
   createGame(title,img){
@@ -35,8 +50,58 @@ export class ItemService {
     });
     console.log(this.games);
   }
+
+  showGame(title,img){
+    let newInfo=firebase.database().ref('games/').push();
+    newInfo.set({
+      'title': title,
+      'img': img
+    });
+    console.log(this.games);
+  }
   getGames(){
     return this.games;
+  }
+
+  getShow(){
+    return this.show;
+  }
+
+  getUser(){
+    for(var i=0;i<this.user.length;i++){
+      if(this.user[i].uid==firebase.auth().currentUser.uid){
+        if(this.user[i].type=="owner"){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  createUser(id, type){
+    let newInfo=firebase.database().ref('users/').push();
+     newInfo.set({
+      'id':id,
+      'type':type
+    });
+    console.log(this.user);
+  }
+
+  getCharacters() {
+    return this.characters;
+  }
+
+  setGame(title) { //globally sets current game title
+    this.currGame=title;
+  }
+
+  loadCharacters(){ //loads current game character from a database that is {game name}Characters through string concatination
+    var refc = firebase.database().ref(this.currGame+'Characters/');
+    refc.on('value',resp =>{
+    this.characters=[];
+    this.characters=snapshotToArray(resp);
+    this.events.publish('dataloaded',Date.now())
+  });
   }
 
 }

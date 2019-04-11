@@ -9,6 +9,7 @@ import { ItemService } from '../item.service';
 })
 export class GameHomePage implements OnInit {
   current_item:any;
+  owner=false;
   
     constructor(private route: ActivatedRoute,
       private router: Router,
@@ -17,6 +18,7 @@ export class GameHomePage implements OnInit {
       }
 
   ngOnInit() {
+    this.owner=this.itemService.getUser();
     
       //current item information
       this.route.params.subscribe(
