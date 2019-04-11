@@ -21,7 +21,7 @@ export class NewGamePage implements OnInit {
  	  //public formBuilder: FormBuilder,
  	     public itemService: ItemService) { }
   //constructor parameters break add page  private photoLibrary: PhotoLibrary
-  ngOnInit() {}
+  ngOnInit() :void {}
 
 
 
@@ -56,6 +56,8 @@ export class NewGamePage implements OnInit {
   }
   goBack() {
     console.log("go back");
+    var self= this;
+    self.router.navigate(['/home']);
   }
   async pickImage() {
     const options: CameraOptions = {
