@@ -48,7 +48,7 @@ export class ItemService {
   getUser(){
     for(var i=0;i<this.user.length;i++){
       if(this.user[i].uid==firebase.auth().currentUser.uid){
-        if(this.user[i].type=="Owner"){
+        if(this.user[i].type=="owner"){
           return true;
         }
       }
