@@ -22,9 +22,9 @@ owner=false;
     var self= this;
     self.router.navigate(['/character-profile', item]);
   }
-  editCharacters() {
+  addCharacter() {
     var self = this;
-    self.router.navigate(['/edit-characters']);
+    self.router.navigate(['/add-character']);
   }
 
 }
