@@ -9,13 +9,15 @@
 </ion-header>
 
 <ion-content color = "dark">
+    <form [formGroup]="new_game" (submit)="createGame(new_game.value)">
   <ion-item color="dark">
       <ion-label  position="floating">Game Name</ion-label>
-      <ion-input type="text"  required></ion-input>
+      <ion-input type="text" formControlName="title" required></ion-input>
     </ion-item>
-    <ion-button (click)="pickImage()" id="upload" fill="solid">Upload Game Icon</ion-button>
+    <ion-button (click)="pickImage()" id="upload" formControlName="img" fill="solid">Upload Game Icon</ion-button>
     <br>
-    <ion-button id="submit"type="Submit" (click)="createGame()" expand="block">Submit</ion-button>
+    <ion-button id="submit"type="Submit"  expand="block">Submit</ion-button>
   
-  
+  </form>
 </ion-content>
+ 
