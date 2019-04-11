@@ -26,7 +26,7 @@ export class NewGamePage implements OnInit {
   ngOnInit() :void {
     this.new_game = this.formBuilder.group({
       title: new FormControl('', Validators.required),
-     
+      img: new FormControl('', Validators.required)
     });
   }
 
@@ -55,9 +55,9 @@ export class NewGamePage implements OnInit {
       let blobInfo = await this.makeFileIntoBlob(cameraInfo);
       let uploadInfo: any = await this.uploadToFirebase(blobInfo);
       console.log(uploadInfo);
-      // let url:any = uploadInfo.ref.getDownloadURL();
+      let url:any = uploadInfo.ref.getDownloadURL();
       alert("File Upload Success " + uploadInfo);
-      this.imgfile = uploadInfo;
+      this.imgfile = uploadInfo.ref.getDownloadURL();
       
     } catch (e) {
       console.log(e.message);

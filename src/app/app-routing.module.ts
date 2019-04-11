@@ -22,7 +22,10 @@ const routes: Routes = [
   { path: 'forum', loadChildren: './forum/forum.module#ForumPageModule' },
   { path: 'new-game', loadChildren: './new-game/new-game.module#NewGamePageModule' },
   { path: 'characters', loadChildren: './characters/characters.module#CharactersPageModule' },
-  { path: 'add-character', loadChildren: './add-character/add-character.module#AddCharacterPageModule' }
+  { path: 'add-character', loadChildren: './add-character/add-character.module#AddCharacterPageModule' },
+  { path: 'edit-home', loadChildren: './edit-home/edit-home.module#EditHomePageModule' },
+  { path: 'edit-characters', loadChildren: './edit-characters/edit-characters.module#EditCharactersPageModule' },
+  { path: 'edit-items', loadChildren: './edit-items/edit-items.module#EditItemsPageModule' }
 ];
 
 @NgModule({
