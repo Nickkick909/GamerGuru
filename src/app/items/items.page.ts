@@ -18,4 +18,9 @@ export class ItemsPage implements OnInit {
     this.owner=this.itemService.getUser();
   }
 
+
+  addItem() {
+    var self= this;
+    self.router.navigate(['/edit-items']);
+  }
 }
