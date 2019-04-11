@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-items',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items.page.scss'],
 })
 export class ItemsPage implements OnInit {
-
-  constructor() { }
+  items=[];
+  owner=false;
+  constructor(private router:Router,
+    public itemService:ItemService) { }
 
   ngOnInit() {
+    this.items=this.itemService.getItems();
+    this.owner=this.itemService.getUser();
   }
 
 }

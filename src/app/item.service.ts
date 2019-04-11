@@ -11,10 +11,12 @@ export class ItemService {
   user:Array<any>=[];
   show:Array<any>=[];
   characters:Array<any>=[];
+  items:Array<any>=[];
   currGame="";
   ref = firebase.database().ref('games/');
   refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
+  refi = firebase.database().ref('items/');
   constructor(public events: Events) { 
     console.log("loading saved items");
     //loading the games list from firebase, commented out for now till somethings actaully saved in firebase
@@ -38,6 +40,11 @@ export class ItemService {
     this.refs.on('value',resp =>{
       this.show=[];
       this.show=snapshotToArray(resp);
+      this.events.publish('dataloaded',Date.now())
+    });
+    this.refi.on('value',resp =>{
+      this.items=[];
+      this.items=snapshotToArray(resp);
       this.events.publish('dataloaded',Date.now())
     });
   }
@@ -89,6 +96,9 @@ export class ItemService {
 
   getCharacters() {
     return this.characters;
+  }
+  getItems() {
+    return this.items;
   }
 
   setGame(title) { //globally sets current game title
