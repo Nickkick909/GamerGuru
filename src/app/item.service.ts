@@ -10,6 +10,8 @@ export class ItemService {
   games:Array<any>;//=[{"title": "Smite", "img":"https://web2.hirez.com/smite-media//wp-content/uploads/2019/02/LOGO_SMITE_2016_WHITE_Shadow_500x170.png"}]; //array for the games we have to choose from
   user:Array<any>=[];
   show:Array<any>=[];
+  characters:Array<any>=[];
+  currGame="";
   ref = firebase.database().ref('games/');
   refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
@@ -83,6 +85,10 @@ export class ItemService {
       'type':type
     });
     console.log(this.user);
+  }
+
+  getCharacters() {
+    return this.characters;
   }
 
 }
