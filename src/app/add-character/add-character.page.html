@@ -8,5 +8,37 @@
 </ion-header>
 
 <ion-content color= "dark">
-
+  <form [formGroup]="new_character" (submit)="createCharacter(character.value)">
+    <ion-item color="dark">
+        <ion-label  position="floating">Character Name</ion-label>
+        <ion-input type="text" formControlName="name" required></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label  position="floating">Role</ion-label>
+        <ion-input type="text" formControlName="role" required></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label  position="floating">Passive</ion-label>
+        <ion-input type="text" formControlName="passive" required></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label  position="floating">Ability 1</ion-label>
+        <ion-input type="text" formControlName="ab1" required></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label  position="floating">Ability 2</ion-label>
+        <ion-input type="text" formControlName="ab2" required></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label  position="floating">Ability 3</ion-label>
+        <ion-input type="text" formControlName="ab3" required></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label  position="floating">Ultimate</ion-label>
+        <ion-input type="text" formControlName="ult" required></ion-input>
+      </ion-item>
+      
+      <ion-button id="submit"type="Submit"  expand="block">Submit</ion-button>
+    
+    </form>
 </ion-content>

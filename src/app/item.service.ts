@@ -57,6 +57,19 @@ export class ItemService {
     });
     console.log(this.games);
   }
+  createCharacter(name,role, passive, ab1, ab2,ab3,ult){
+    let newInfo=firebase.database().ref('games/').push();
+    newInfo.set({
+      'name': name,
+      'role': role,
+      'passive': passive,
+      'ab1': ab1,
+      'ab2': ab2,
+      'ab3': ab3,
+      'ult': ult
+    });
+    console.log(this.games);
+  }
 
   showGame(title,img){
     let newInfo=firebase.database().ref('games/').push();
