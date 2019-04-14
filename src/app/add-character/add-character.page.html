@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content color= "dark">
-  <form [formGroup]="new_character" (submit)="createCharacter(character.value)">
+  <form [formGroup]="new_character" (submit)="createCharacter(new_character.value)">
     <ion-item color="dark">
         <ion-label  position="floating">Character Name</ion-label>
         <ion-input type="text" formControlName="name" required></ion-input>

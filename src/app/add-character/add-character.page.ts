@@ -20,7 +20,7 @@ export class AddCharacterPage implements OnInit {
  	  public formBuilder: FormBuilder,
  	     public itemService: ItemService) { }
   //constructor parameters break add page  private photoLibrary: PhotoLibrary
-  ngOnInit() :void {
+  ngOnInit() {
     this.new_character = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
