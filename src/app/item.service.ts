@@ -12,12 +12,18 @@ export class ItemService {
   show:Array<any>=[];
   characters:Array<any>=[];
   items:Array<any>=[];
+  chats:Array<any>=[];
   currGame="";
   ref = firebase.database().ref('games/');
   refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
   refi = firebase.database().ref('items/');
+<<<<<<< HEAD
   refc = firebase.database().ref(this.currGame+'Characters/');
+=======
+  refc = firebase.database().ref('characters/');
+  refchats = firebase.database().ref('chats/');
+>>>>>>> 7c75d77c38f4f48e0137d4761b491347483c1048
   constructor(public events: Events) { 
     console.log("loading saved items");
     //loading the games list from firebase, commented out for now till somethings actaully saved in firebase
@@ -53,8 +59,24 @@ export class ItemService {
       this.items=snapshotToArray(resp);
       this.events.publish('dataloaded',Date.now())
     });
+  
+  this.refchats.on('value',resp =>{
+    this.chats=[];
+    this.chats=snapshotToArray(resp);
+    this.events.publish('dataloaded',Date.now())
+  });
+  
   }
-
+  createChat(user, message) {
+    let newInfo=firebase.database().ref('chats/').push();
+    newInfo.set({
+      'user': user,
+      'message': message
+    });
+  }
+  getChats() {
+    return this.chats;
+  }
   createGame(title,img){
     let newInfo=firebase.database().ref('games/').push();
     newInfo.set({
