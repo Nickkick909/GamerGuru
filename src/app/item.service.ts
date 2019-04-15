@@ -18,12 +18,7 @@ export class ItemService {
   refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
   refi = firebase.database().ref('items/');
-<<<<<<< HEAD
   refc = firebase.database().ref(this.currGame+'Characters/');
-=======
-  refc = firebase.database().ref('characters/');
-  refchats = firebase.database().ref('chats/');
->>>>>>> 7c75d77c38f4f48e0137d4761b491347483c1048
   constructor(public events: Events) { 
     console.log("loading saved items");
     //loading the games list from firebase, commented out for now till somethings actaully saved in firebase
