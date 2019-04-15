@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Events } from '@ionic/angular';
-import { createWriteStream } from 'fs';
+
 
 @Injectable({
   providedIn: 'root'
