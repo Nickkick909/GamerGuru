@@ -17,7 +17,7 @@ export class ItemService {
   refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
   refi = firebase.database().ref('items/');
-  refc = firebase.database().ref('characters/');
+  refc = firebase.database().ref(this.currGame+'Characters/');
   constructor(public events: Events) { 
     console.log("loading saved items");
     //loading the games list from firebase, commented out for now till somethings actaully saved in firebase
@@ -64,7 +64,7 @@ export class ItemService {
     console.log(this.games);
   }
   createCharacter(name,role, passive, ab1, ab2,ab3,ult){
-    let newInfo=firebase.database().ref('characters/').push();
+    let newInfo=firebase.database().ref(this.currGame+'Characters/').push();
     newInfo.set({
       'name': name,
       'role': role,
