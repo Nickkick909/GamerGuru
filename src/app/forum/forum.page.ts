@@ -15,8 +15,7 @@ export class ForumPage implements OnInit {
   owner=false;
   user="";
   new_chat: FormGroup;
-  constructor(private file: File, private camera: Camera,
-    private router: Router,
+  constructor(private router: Router,
  	  public formBuilder: FormBuilder,
  	     public itemService: ItemService) { }
 
