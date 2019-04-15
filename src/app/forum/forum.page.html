@@ -14,13 +14,13 @@
 
 <ion-content color = "dark">
     <ion-list>
-        <ion-item *ngFor="let chat of chats" no-lines>
-          <ng-template #message>
-            <div class="chat-message" text-right *ngIf="chat.user === nickname">
-              <div class="right-bubble">
+        <ion-item *ngFor="let item of chats" no-lines>
+          <!-- <ng-template #message>
+            <div class="chat-message" text-right> *ngIf="chat.user === nickname"> -->
+              <!-- <div class="right-bubble">
                 <span class="msg-name">Me</span>
                 <span class="msg-date">{{chat.sendDate | date:'short'}}</span>
-                <p text-wrap>{{chat.message}}</p>
+                <p text-wrap>{{item.message}}</p>
               </div>
             </div>
             <div class="chat-message" text-left *ngIf="chat.user !== nickname">
@@ -30,7 +30,8 @@
                 <p text-wrap>{{chat.message}}</p>
               </div>
             </div>
-          </ng-template>
+          </ng-template> -->
+          {{ item.message}}
         </ion-item>
       </ion-list>
     
@@ -38,12 +39,17 @@
 <ion-footer>
   <ion-grid>
     <ion-row>
+        <form [formGroup]="new_chat" (submit)="sendMessage(new_chat.value)">
       <ion-col col-1>
-        <ion-input type="text" placeholder="Type a message"> <!-- [(ngModel)]="data.message" name="message">--></ion-input>
+        <ion-input type="text" placeholder="Type a message" formControlName="message"> <!-- [(ngModel)]="data.message" name="message">--></ion-input>
       </ion-col>
-      <ion-col col-2 (click)="sendMessage()">
-        <ion-icon name="paper-plane"></ion-icon>
+      <ion-col col-2 >
+        <ion-button type="submit">
+            <ion-icon name="paper-plane"></ion-icon>
+        </ion-button>
+        
       </ion-col>
+    </form>
     </ion-row>
   </ion-grid>
 </ion-footer>

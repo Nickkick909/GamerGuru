@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'add-character', loadChildren: './add-character/add-character.module#AddCharacterPageModule' },
   { path: 'edit-home', loadChildren: './edit-home/edit-home.module#EditHomePageModule' },
   { path: 'edit-characters', loadChildren: './edit-characters/edit-characters.module#EditCharactersPageModule' },
-  { path: 'edit-items', loadChildren: './edit-items/edit-items.module#EditItemsPageModule' }
+  { path: 'edit-items', loadChildren: './edit-items/edit-items.module#EditItemsPageModule' },
+  { path: 'item-description', loadChildren: './item-description/item-description.module#ItemDescriptionPageModule' }
 ];
 
 @NgModule({

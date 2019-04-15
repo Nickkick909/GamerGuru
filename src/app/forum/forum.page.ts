@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { File } from "@ionic-native/file/ngx";
-import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
-// import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
 import { ItemService } from '../item.service';
+
 @Component({
   selector: 'app-forum',
   templateUrl: './forum.page.html',
@@ -14,6 +12,7 @@ import { ItemService } from '../item.service';
 })
 export class ForumPage implements OnInit {
   chats= [];
+  owner=false;
   user="";
   new_chat: FormGroup;
   constructor(private file: File, private camera: Camera,
@@ -25,9 +24,11 @@ export class ForumPage implements OnInit {
           this.new_chat = this.formBuilder.group({
             message: new FormControl('', Validators.required)
           });
+          this.chats= this.itemService.getChats();
           this.user=firebase.auth().currentUser.email;
+          this.owner=this.itemService.getUser();
         }
-  sendMessage() {
-
+  sendMessage(value) {
+    this.itemService.createChat(this.user, value.message);
   }
 }

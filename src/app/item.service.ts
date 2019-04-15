@@ -19,6 +19,7 @@ export class ItemService {
   refu = firebase.database().ref('usertypes/');
   refi = firebase.database().ref('items/');
   refc = firebase.database().ref(this.currGame+'Characters/');
+  refchats = firebase.database().ref(this.currGame+'Chats/');
   constructor(public events: Events) { 
     console.log("loading saved items");
     //loading the games list from firebase, commented out for now till somethings actaully saved in firebase
@@ -63,7 +64,7 @@ export class ItemService {
   
   }
   createChat(user, message) {
-    let newInfo=firebase.database().ref('chats/').push();
+    let newInfo=firebase.database().ref(this.currGame+'Chats/').push();
     newInfo.set({
       'user': user,
       'message': message
@@ -140,7 +141,14 @@ export class ItemService {
   setGame(title) { //globally sets current game title
     this.currGame=title;
   }
-
+  loadChats(){ //loads current game character from a database that is {game name}Characters through string concatination
+  var refc = firebase.database().ref(this.currGame+'Chats/');
+  refc.on('value',resp =>{
+  this.chats=[];
+  this.chats=snapshotToArray(resp);
+  this.events.publish('dataloaded',Date.now())
+});
+}
   loadCharacters(){ //loads current game character from a database that is {game name}Characters through string concatination
     var refc = firebase.database().ref(this.currGame+'Characters/');
     refc.on('value',resp =>{
