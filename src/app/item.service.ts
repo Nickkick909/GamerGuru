@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Events } from '@ionic/angular';
+import { createWriteStream } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ItemService {
   ref = firebase.database().ref('games/');
   refs = firebase.database().ref('showgames/');
   refu = firebase.database().ref('usertypes/');
-  refi = firebase.database().ref('items/');
+  refi = firebase.database().ref(this.currGame+'items/');
   refc = firebase.database().ref(this.currGame+'Characters/');
   refchats = firebase.database().ref(this.currGame+'Chats/');
   constructor(public events: Events) { 
@@ -95,6 +96,19 @@ export class ItemService {
     console.log(this.characters);
   }
 
+  createItem(name, stats, passive, cost, role, why){
+    let newInfo=firebase.database().ref(this.currGame+'Items/').push();
+    newInfo.set({
+      'name': name,
+      'stats': stats,
+      'passive': passive,
+      'cost' : cost,
+      'role': role,
+      'why': why
+    });
+    console.log(this.items);
+  }
+
   showGame(title,img){
     let newInfo=firebase.database().ref('games/').push();
     newInfo.set({
@@ -154,6 +168,15 @@ export class ItemService {
     refc.on('value',resp =>{
     this.characters=[];
     this.characters=snapshotToArray(resp);
+    this.events.publish('dataloaded',Date.now())
+  });
+  }
+
+  loadItems(){ //loads current game character from a database that is {game name}Characters through string concatination
+    var refc = firebase.database().ref(this.currGame+'Items/');
+    refc.on('value',resp =>{
+    this.items=[];
+    this.items=snapshotToArray(resp);
     this.events.publish('dataloaded',Date.now())
   });
   }

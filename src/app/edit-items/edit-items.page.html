@@ -8,5 +8,32 @@
   </ion-header>
   
   <ion-content color= "dark">
-  
+    <form [formGroup]="new_item" (submit)="createItem(new_item.value)">
+      <ion-item color="dark">
+          <ion-label  position="floating">Item Name</ion-label>
+          <ion-input type="text" formControlName="name" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Stats</ion-label>
+          <ion-input type="text" formControlName="stats" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Passive (if applicable)</ion-label>
+          <ion-input type="text" formControlName="passive" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Cost</ion-label>
+          <ion-input type="text" formControlName="cost" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Prefered role to use on</ion-label>
+          <ion-input type="text" formControlName="role" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Why to use this item</ion-label>
+          <ion-input type="text" formControlName="why" required></ion-input>
+        </ion-item>
+        <ion-button id="submit"type="Submit"  expand="block">Submit</ion-button>
+      
+      </form>
   </ion-content>

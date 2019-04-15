@@ -11,5 +11,14 @@
 </ion-header>
 
 <ion-content color="dark">
-
+  <ion-list>
+    <ion-item color = "dark" *ngFor="let item of items" (click)="goToItem(item)">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.img"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        {{ item.name }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

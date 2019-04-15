@@ -14,13 +14,16 @@ export class ItemsPage implements OnInit {
     public itemService:ItemService) { }
 
   ngOnInit() {
+    this.itemService.loadItems();
     this.items=this.itemService.getItems();
     this.owner=this.itemService.getUser();
   }
 
-
   addItem() {
+    console.log("Add game");
     var self= this;
+    this.itemService.loadItems();
+    this.itemService.getItems();
     self.router.navigate(['/edit-items']);
   }
 }
