@@ -1,9 +1,48 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>item-description</ion-title>
+  <ion-toolbar color = "dark">
+      <ion-buttons slot="start" color = "dark">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>Item</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color= "dark">
+    <ion-list>
+        <ion-item color = "dark" *ngFor="let item of items"> <!-- (click)="goToItem(item)"> -->
+          
+          <ion-header>
+            {{ item.name}}
+          </ion-header> 
+      
+      <ion-item-divider color="dark"></ion-item-divider>
+      <ion-text>
+      <hr>
+        <p>
+          Stats:  
+          {{ item.stats}}
+        </p>
+        <p>
+          <br>
+          Passive:
+          {{ item.passive}}
+        </p>
+        <br>
+        <p>
+          Cost:
+          {{item.cost}}
+        </p>
+        <br>
+        <p>
+          Prefered Role:
+          {{item.role}}
+        </p>
+        <p>
+          Tips on why to use:
+          {{item.why}}
+        </p>
+      </ion-text>
 
+    </ion-item>
+  </ion-list>
 </ion-content>

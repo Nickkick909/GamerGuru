@@ -26,4 +26,10 @@ export class ItemsPage implements OnInit {
     this.itemService.getItems();
     self.router.navigate(['/edit-items']);
   }
+
+  goToItem(item){
+    console.log(item);
+    this.itemService.setcurrItem(item.name,item.stats,item.passive,item.cost,item.role,item.why);
+    this.router.navigate(["/item-description", item]);
+  }
 }

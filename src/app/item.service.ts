@@ -14,6 +14,7 @@ export class ItemService {
   characters:Array<any>=[];
   items:Array<any>=[];
   chats:Array<any>=[];
+  currItem:Array<any>=[];
   currGame="";
   ref = firebase.database().ref('games/');
   refs = firebase.database().ref('showgames/');
@@ -124,6 +125,23 @@ export class ItemService {
   getShow(){
     return this.show;
   }
+  getcurrItem(){
+    return this.currItem;
+  }
+  
+  clearCurrItem(){
+    this.currItem=[];
+  }
+
+  setcurrItem(name,stats,passive,cost,role,why){
+   this.currItem.push({
+    'name': name,
+      'stats': stats,
+      'passive': passive,
+      'cost' : cost,
+      'role': role,
+      'why': why
+  });}
 
   getUser(){
     for(var i=0;i<this.user.length;i++){
