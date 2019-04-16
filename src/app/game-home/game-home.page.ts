@@ -19,14 +19,14 @@ export class GameHomePage implements OnInit {
 
   ngOnInit() {
     this.owner=this.itemService.getUser();
-    
+    this.current_item=this.itemService.currGame;
       //current item information
-      this.route.params.subscribe(
-        param => {
-          this.current_item = param;
-          console.log('Selected item detail: ' + this.current_item.name);
-        }
-      )
+      // this.route.params.subscribe(
+      //   param => {
+      //     this.current_item = param;
+      //     console.log('Selected item detail: ' + this.current_item.name);
+      //   }
+      // )
   }
 
 }

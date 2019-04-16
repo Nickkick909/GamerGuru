@@ -13,7 +13,7 @@ import { ItemService } from '../item.service';
 export class ForumPage implements OnInit {
   chats=[];
   owner=false;
-  user="";
+  user=firebase.auth().currentUser.email;
   new_chat: FormGroup;
   constructor(private router: Router,
  	  public formBuilder: FormBuilder,
@@ -32,5 +32,6 @@ export class ForumPage implements OnInit {
   sendMessage(value) {
     this.itemService.createChat(this.user, value.message);
     this.chats=this.itemService.getChats();
+    value.message="";
   }
 }

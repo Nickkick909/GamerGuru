@@ -40,7 +40,7 @@ export class AppComponent {
     },
     
     {
-      title: 'Forum',
+      title: 'Live Chat',
       url: '/forum',
       icon: 'chatboxes'
     },
