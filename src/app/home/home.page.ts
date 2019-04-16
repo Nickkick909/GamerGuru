@@ -27,6 +27,7 @@ export class HomePage implements OnInit{
     this.itemService.setGame(item.title);
     this.itemService.loadCharacters();
     this.itemService.loadItems();
+    this.itemService.loadChats();
     self.router.navigate(['/game-home', item]);
     
   }

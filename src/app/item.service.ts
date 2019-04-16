@@ -174,8 +174,8 @@ export class ItemService {
     this.currGame=title;
   }
   loadChats(){ //loads current game character from a database that is {game name}Characters through string concatination
-  var refc = firebase.database().ref(this.currGame+'Chats/');
-  refc.on('value',resp =>{
+  var refchats = firebase.database().ref(this.currGame+'Chats/');
+  refchats.on('value',resp =>{
   this.chats=[];
   this.chats=snapshotToArray(resp);
   this.events.publish('dataloaded',Date.now())

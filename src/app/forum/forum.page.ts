@@ -11,7 +11,7 @@ import { ItemService } from '../item.service';
   styleUrls: ['./forum.page.scss'],
 })
 export class ForumPage implements OnInit {
-  chats= [];
+  chats=[];
   owner=false;
   user="";
   new_chat: FormGroup;
@@ -20,14 +20,17 @@ export class ForumPage implements OnInit {
  	     public itemService: ItemService) { }
 
         ngOnInit() {
-          this.new_chat = this.formBuilder.group({
-            message: new FormControl('', Validators.required)
-          });
+          this.itemService.loadChats();
+          
           this.chats= this.itemService.getChats();
           this.user=firebase.auth().currentUser.email;
           this.owner=this.itemService.getUser();
+          this.new_chat = this.formBuilder.group({
+            message: new FormControl('', Validators.required)
+          });
         }
   sendMessage(value) {
     this.itemService.createChat(this.user, value.message);
+    this.chats=this.itemService.getChats();
   }
 }
