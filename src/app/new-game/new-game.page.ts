@@ -26,13 +26,13 @@ export class NewGamePage implements OnInit {
   ngOnInit() :void {
     this.new_game = this.formBuilder.group({
       title: new FormControl('', Validators.required),
-      img: new FormControl('', Validators.required)
+      img: new FormControl(this.imgfile, Validators.required)
     });
   }
 
   createGame(value){
     //this.itemService.createGame(value.title,value.img);
-    this.itemService.createGame(value.title, this.imgfile);
+    this.itemService.createGame(value.title, value.img);
   	this.goBack();
   }
   goBack() {
