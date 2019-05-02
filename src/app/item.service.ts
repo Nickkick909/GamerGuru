@@ -15,6 +15,7 @@ export class ItemService {
   items:Array<any>=[];
   chats:Array<any>=[];
   currItem:Array<any>=[];
+  currInfo:Array<any>=[];
   currGame="";
   ref = firebase.database().ref('games/');
   refs = firebase.database().ref('showgames/');
@@ -110,6 +111,17 @@ export class ItemService {
     console.log(this.items);
   }
 
+  createInfo(general, map, role, items){
+    let newInfo=firebase.database().ref(this.currGame+'Info/').push();
+    newInfo.set({
+      'general': general,
+      'map': map,
+      'role': role,
+      'items' : items
+    });
+    console.log(this.items);
+  }
+
   showGame(title,img){
     let newInfo=firebase.database().ref('games/').push();
     newInfo.set({
@@ -128,9 +140,17 @@ export class ItemService {
   getcurrItem(){
     return this.currItem;
   }
+
+  getcurrInfo(){
+    return this.currInfo;
+  }
   
   clearCurrItem(){
     this.currItem=[];
+  }
+
+  clearCurrInfo(){
+    this.currInfo=[];
   }
 
   setcurrItem(name,stats,passive,cost,role,why){
@@ -198,6 +218,15 @@ export class ItemService {
     this.events.publish('dataloaded',Date.now())
   });
   }
+
+ loadInfo(){ //loads current game character from a database that is {game name}Characters through string concatination
+  var refc = firebase.database().ref(this.currGame+'Info/');
+  refc.on('value',resp =>{
+  this.currInfo=[];
+  this.currInfo=snapshotToArray(resp);
+  this.events.publish('dataloaded',Date.now())
+});
+}
 
 }
 //snapshotToArray method for loading lists from firebase

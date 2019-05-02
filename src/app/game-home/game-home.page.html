@@ -7,11 +7,40 @@
       {{current_item}}
     </ion-title>
     <ion-buttons slot="primary">
-      <ion-button (click)="addGame" *ngIf="owner"><ion-icon slot="icon-only" name="add"></ion-icon></ion-button>
+      <ion-button (click)="addInfo()" *ngIf="owner"><ion-icon slot="icon-only" name="add"></ion-icon></ion-button>
   </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color = "dark">
-    
+  <ion-list>
+    <ion-item color = "dark" *ngFor="let item of items"> <!-- (click)="goToItem(item)"> -->
+  <ion-text>
+  <hr>
+  <h2>General Information</h2>
+    <p>
+      {{ item.general}}
+    </p>
+    <h2>Map Information</h2>
+    <p>
+      
+      <br>
+      {{ item.map}}
+    </p>
+    <br> 
+    <h2>Role Information</h2>
+    <p>
+     
+      {{item.role}}
+    </p>
+    <br>
+    <h2>Item Information</h2>
+    <p>
+      
+      {{item.items}}
+    </p>
+  </ion-text>
+
+</ion-item>
+</ion-list>
 </ion-content>
