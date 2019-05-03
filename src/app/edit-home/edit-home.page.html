@@ -3,10 +3,29 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
           </ion-buttons>
-      <ion-title>Edit Home Page</ion-title>
+      <ion-title>Add Home Info</ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-content color= "dark">
-  
+    <form [formGroup]="new_item" (submit)="createInfo(new_item.value)">
+      <ion-item color="dark">
+          <ion-label  position="floating">General Info</ion-label>
+          <ion-input type="text" formControlName="general" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Map Info</ion-label>
+          <ion-input type="text" formControlName="map" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Role Info</ion-label>
+          <ion-input type="text" formControlName="role" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label  position="floating">Item Info</ion-label>
+          <ion-input type="text" formControlName="items" required></ion-input>
+        </ion-item>
+        <ion-button id="submit"type="Submit"  expand="block">Submit</ion-button>
+      
+      </form>
   </ion-content>

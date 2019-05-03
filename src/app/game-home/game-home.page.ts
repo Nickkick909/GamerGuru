@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
+
 import { ItemService } from '../item.service';
+
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-game-home',
@@ -9,10 +12,12 @@ import { ItemService } from '../item.service';
 })
 export class GameHomePage implements OnInit {
   current_item:any;
+  items=[];
   owner=false;
   
-    constructor(private route: ActivatedRoute,
+    constructor(
       private router: Router,
+      private route: ActivatedRoute,
       public itemService: ItemService) {
  
       }
@@ -20,13 +25,14 @@ export class GameHomePage implements OnInit {
   ngOnInit() {
     this.owner=this.itemService.getUser();
     this.current_item=this.itemService.currGame;
-      //current item information
-      // this.route.params.subscribe(
-      //   param => {
-      //     this.current_item = param;
-      //     console.log('Selected item detail: ' + this.current_item.name);
-      //   }
-      // )
+    this.items= this.itemService.getcurrInfo();
+    this.itemService.clearCurrInfo();
+  }
+
+  addInfo() {
+    console.log("Add information");
+    var self=this;
+    self.router.navigate(['/edit-home']);
   }
 
 }
