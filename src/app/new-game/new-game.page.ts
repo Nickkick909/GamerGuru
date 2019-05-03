@@ -26,13 +26,13 @@ export class NewGamePage implements OnInit {
   ngOnInit() :void {
     this.new_game = this.formBuilder.group({
       title: new FormControl('', Validators.required),
-      img: new FormControl(this.imgfile, Validators.required)
+      img: new FormControl('', Validators.required)
     });
   }
 
   createGame(value){
     //this.itemService.createGame(value.title,value.img);
-    this.itemService.createGame(value.title, value.img);
+    this.itemService.createGame(value.title, this.imgfile);
   	this.goBack();
   }
   goBack() {
@@ -135,10 +135,12 @@ makeFileIntoBlob(_imagePath) {
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             console.log('File available at', downloadURL);
             mydownloadurl = downloadURL;
-            resolve( mydownloadurl);
+            // resolve( mydownloadurl);
           });
-          // resolve( uploadTask.snapshot);
-          // resolve( mydownloadurl);
+          resolve( uploadTask.snapshot);
+          this.imgfile = mydownloadurl;
+          resolve( mydownloadurl);
+          this.imgfile = mydownloadurl;
 
         }
       );
