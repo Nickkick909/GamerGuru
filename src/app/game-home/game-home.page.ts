@@ -24,9 +24,9 @@ export class GameHomePage implements OnInit {
 
   ngOnInit() {
     this.owner=this.itemService.getUser();
-    this.current_item=this.itemService.currGame;
     this.items= this.itemService.getcurrInfo();
-    this.itemService.clearCurrInfo();
+    this.current_item=this.itemService.currGame;
+    
   }
 
   addInfo() {

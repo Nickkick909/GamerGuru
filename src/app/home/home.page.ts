@@ -25,10 +25,13 @@ export class HomePage implements OnInit{
   goToItem(item){
     var self= this;
     this.itemService.setGame(item.title);
+    this.itemService.clearCurrInfo();
+    //takes a moment to load game page. sometimes requires home page to be clicked twice to display values
+    this.itemService.loadInfo();
     this.itemService.loadCharacters();
     this.itemService.loadItems();
     this.itemService.loadChats();
-    this.itemService.loadInfo();
+    
     self.router.navigate(['/game-home', item]);
     
   }
