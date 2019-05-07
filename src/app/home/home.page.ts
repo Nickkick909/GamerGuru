@@ -26,7 +26,7 @@ export class HomePage implements OnInit{
     var self= this;
     this.itemService.setGame(item.title);
     this.itemService.clearCurrInfo();
-    //takes a moment to load game page. sometimes requires home page to be clicked twice to display values
+    //takes a moment to load game page. sometimes requires home page to be clicked twice to display ca
     this.itemService.loadInfo();
     this.itemService.loadCharacters();
     this.itemService.loadItems();
